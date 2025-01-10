@@ -4,7 +4,7 @@
 #include "player_high_score.h"
 
 // Constructor that initializes the filename
-PlayerHighScore::PlayerHighScore(const std::string& file) : filename("../" + file) {
+PlayerHighScore::PlayerHighScore(const std::string& file) : filename("../" + file), players(nullptr), playerCount(0) {
  	// Attempt to open the file for writing. If it doesn't exist, create it.
     std::ofstream fileStream(filename, std::ios::app);
     if (!fileStream) {
@@ -12,6 +12,11 @@ PlayerHighScore::PlayerHighScore(const std::string& file) : filename("../" + fil
     }
     // Closing file after ensuring it exists.
     fileStream.close();
+}
+
+PlayerHighScore::~PlayerHighScore() {
+    // Free dynamically allocated memory
+    delete[] players;
 }
 
 // Function to load the high score of a specific player
@@ -37,11 +42,10 @@ int PlayerHighScore::loadData(const std::string& name) const {
 
 // Function to save or update player data
 void PlayerHighScore::saveData(const std::string& name, int score) {
-    std::ifstream file(filename);
+  std::ifstream file(filename);
     std::vector<Player> tempPlayers;
     bool playerFound = false;
 
-    // Read the existing players and their scores
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
@@ -50,7 +54,6 @@ void PlayerHighScore::saveData(const std::string& name, int score) {
             int playerScore;
             if (std::getline(iss, playerName, ':') && (iss >> playerScore)) {
                 if (playerName == name) {
-                    // Update score if player is found
                     tempPlayers.push_back({playerName, score});
                     playerFound = true;
                 } else {
@@ -61,16 +64,21 @@ void PlayerHighScore::saveData(const std::string& name, int score) {
         file.close();
     }
 
-    // If the player was not found, add a new record
     if (!playerFound) {
         tempPlayers.push_back({name, score});
     }
 
-    // Rewrite the file with the updated data
+    // Allocate memory for players dynamically
+    playerCount = tempPlayers.size();
+    players = new Player[playerCount];
+    for (std::size_t i = 0; i < playerCount; ++i) {
+        players[i] = tempPlayers[i];
+    }
+
     std::ofstream outFile(filename);
     if (outFile.is_open()) {
-        for (const auto& player : tempPlayers) {
-            outFile << player.name << ": " << player.highScore << std::endl;
+        for (std::size_t i = 0; i < playerCount; ++i) {
+            outFile << players[i].name << ": " << players[i].highScore << std::endl;
         }
         outFile.close();
     }

@@ -32,7 +32,7 @@ In this project, you can build your own C++ application or extend this Snake gam
 
 ## New Features Added
 
-1. The user enters his/her name and choose the level of the game.
+1. The user enters his name and choose the level of the game.
 2. There are three levels in the game:
    * Easy level: The same Udacity project without any obstacles.
    * Medium level: Adding a wall around the screen.
@@ -41,6 +41,7 @@ In this project, you can build your own C++ application or extend this Snake gam
 4. Add poisoned food that makes the snake go in the reverse direction in case it ate it.
 5. Add bonus food that increases the score by 3.
 6. The user can press P to pause to resume the game.
+7. Display dialogue when the player lose to tell him the high score and the current score.
 
 ## Rubric Points
 
@@ -55,6 +56,8 @@ In this project, you can build your own C++ application or extend this Snake gam
 9. The project uses multithreading. --> In game class.
 10. A mutex or lock is used in the project. --> In game class.
 11. A condition variable is used in the project. --> In game class.
+12. The project follows the Rule of 5. --> In renderer class
+13. The project uses destructors appropriately. --> In player_high_Score class
 
 ## CC Attribution-ShareAlike 4.0 International
 

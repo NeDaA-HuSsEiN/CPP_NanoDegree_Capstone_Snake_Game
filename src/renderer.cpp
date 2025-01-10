@@ -35,8 +35,35 @@ Renderer::Renderer(const std::size_t screen_width,
 }
 
 Renderer::~Renderer() {
+  SDL_DestroyRenderer(sdl_renderer);
   SDL_DestroyWindow(sdl_window);
   SDL_Quit();
+}
+
+Renderer::Renderer(Renderer&& other) noexcept
+    : sdl_window(other.sdl_window), sdl_renderer(other.sdl_renderer),
+      screen_width(other.screen_width), screen_height(other.screen_height),
+      grid_width(other.grid_width), grid_height(other.grid_height) {
+  other.sdl_window = nullptr;
+  other.sdl_renderer = nullptr;
+}
+
+Renderer& Renderer::operator=(Renderer&& other) noexcept {
+  if (this != &other) {
+    SDL_DestroyRenderer(sdl_renderer);
+    SDL_DestroyWindow(sdl_window);
+
+    // Move ownership of SDL resources
+    sdl_window = other.sdl_window;
+    sdl_renderer = other.sdl_renderer;
+
+    // Keep the const members as they are
+    // No need to reassign screen_width, screen_height, grid_width, grid_height
+
+    other.sdl_window = nullptr;
+    other.sdl_renderer = nullptr;
+  }
+  return *this;
 }
 
 void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const &bonus_food, bool show_bonus_food, std::vector<SDL_Point> const &obstacles) {

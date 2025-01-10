@@ -12,11 +12,14 @@ private:
         int highScore;
     };
     std::string filename; // The filename where the data is saved
-
+    Player* players; // Pointer to dynamically allocated array
+    std::size_t playerCount; // Number of players in the array
 public:
     // Constructor that initializes the filename
     PlayerHighScore(const std::string& filename);
 
+    // Destructor that free dynamically allocated memory
+  	~PlayerHighScore();
     // Function to load the high score of a specific player
     int loadData(const std::string& player_name) const;
 
