@@ -34,14 +34,14 @@ In this project, you can build your own C++ application or extend this Snake gam
 
 1. User enters his/her name and choose the level of the game.
 2. There are three levels in the game:
-  * Easy level: The same Udacity project without any obstacles.
-  * Meduim level: Adding a wall around the screen.
-  * Hard level: Adding the wall as well as a random obstacles.
+   * Easy level: The same Udacity project without any obstacles.
+   * Meduim level: Adding a wall around the screen.
+   * Hard level: Adding the wall as well as a random obstacles.
 3. Save the name and the high score of the player in a text file.
 4. Add poisoned food that makes the snake go in the reverse direction in case ate it.
 5. Add bonus food that increases the score by 3.
 6. User can press P to pause to resume the game.
-   
+
 ## CC Attribution-ShareAlike 4.0 International
 
 
