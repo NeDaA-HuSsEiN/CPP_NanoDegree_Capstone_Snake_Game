@@ -32,15 +32,29 @@ In this project, you can build your own C++ application or extend this Snake gam
 
 ## New Features Added
 
-1. User enters his/her name and choose the level of the game.
+1. The user enters his/her name and choose the level of the game.
 2. There are three levels in the game:
    * Easy level: The same Udacity project without any obstacles.
-   * Meduim level: Adding a wall around the screen.
-   * Hard level: Adding the wall as well as a random obstacles.
-3. Save the name and the high score of the player in a text file.
-4. Add poisoned food that makes the snake go in the reverse direction in case ate it.
+   * Medium level: Adding a wall around the screen.
+   * Hard level: Adding the wall as well as random obstacles.
+3. Save the name and the player's high score in a text file.
+4. Add poisoned food that makes the snake go in the reverse direction in case it ate it.
 5. Add bonus food that increases the score by 3.
-6. User can press P to pause to resume the game.
+6. The user can press P to pause to resume the game.
+
+## Rubric Points
+
+1. The project reads data from a file and process the data, or the program writes data to a file. --> high_scores.txt
+2. The project accepts user input and processes the input. --> Get the name of the player and the level of the game.
+3. The project demonstrates an understanding of C++ functions and control structures. --> Added different functions in controller, game, and renderer module.
+4. The project uses data structures and immutable variables. --> Define obstacles vector in obstacle.h
+5. One or more classes are added to the project with appropriate access specifiers for class members. --> Added two new classes which are obstacle, and player_high_score classes.
+6. Class constructors utilize member initialization lists. --> In obstacle, and player_high_score classes.
+7. Classes abstract implementation details from their interfaces. --> In obstacle, and player_high_score classes.
+8. The project makes use of references in function declarations. --> function HandleInput takes pass the 3rd param by reference. Also, function Render pass some param by reference.
+9. The project uses multithreading. --> In game class.
+10. A mutex or lock is used in the project. --> In game class.
+11. A condition variable is used in the project. --> In game class.
 
 ## CC Attribution-ShareAlike 4.0 International
 
