@@ -73,12 +73,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
         	if(not_add_rand_obst)
             {
               	std::thread obstacleTimer(TimerThread, &not_add_rand_obst);
-      			obstacleTimer.detach();
+      			    obstacleTimer.detach();
             }
         	else
             {
-        		obstacle.RemoveRandomObstacle();
-    			obstacle.AddRandomObstacle();
+        		    obstacle.RemoveRandomObstacle();
+    			      obstacle.AddRandomObstacle();
               	not_add_rand_obst = true;
             }
  	 }
