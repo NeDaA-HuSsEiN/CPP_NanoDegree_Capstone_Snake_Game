@@ -24,6 +24,7 @@ class Snake {
   float speed{0.1f};
   int size{1};
   bool alive{true};
+  bool poison_snake{false};
   float head_x;
   float head_y;
   std::vector<SDL_Point> body;
